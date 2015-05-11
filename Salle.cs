@@ -13,6 +13,7 @@ namespace LogicielReservation
 
         protected string _nom;
         protected List<Table> _tables;
+        protected List<TableReservee> _tablesreservees;
 
         #endregion
 
@@ -21,28 +22,28 @@ namespace LogicielReservation
 
         [XmlArray("Tables")]
         [XmlArrayItem("Table")]
+        public List<TableReservee> mesTablesReservees
+        {
+            get { return _tablesreservees; }
+            protected set { _tablesreservees = value; }
+        }
+
         public List<Table> mesTables
         {
             get { return _tables; }
-            set { _tables = value; }
+            protected set { _tables = value; }
         }
 
         public string monNom
         {
             get { return _nom; }
-            set { _nom = value; }
+            protected set { _nom = value; }
         }
 
         #endregion
 
 
         #region constructeur
-
-        public Salle() { }
-
-        public Salle() {
-            mesTables = new List<Table>();
-        }
 
 
         #endregion
@@ -54,6 +55,26 @@ namespace LogicielReservation
 
         #endregion
 
+        #region structures
+        public struct TableReservee
+        {
+            Reservation reservation;
+            Table table;
+
+            public TableReservee()
+            {
+                reservation = null;
+                table = null;
+            }
+
+            public TableReservee(Reservation res, Table tab)
+            {
+                reservation = res;
+                table = tab;
+            }
+        }
+
+        #endregion
 
     }
 }
