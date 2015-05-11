@@ -57,7 +57,48 @@ namespace LogicielReservation
             public TableRectangle(int[] places)
             {
                 monNbPlaces = places;
-                Console.WriteLine("");
+
+                bool intEntered = false;
+                int[] Places = new int[4];
+                string demande;
+                int entARetourner = 0;
+                while (intEntered == false)
+                { // Il faut absolument que ce qu'entre l'utilisateur soit un nombre
+                    Console.WriteLine("Combien de places y a-t-il sur le 1er côté de la table ?");
+                    Console.Write("-> ");
+                    demande = Console.ReadLine();
+                    intEntered = Int32.TryParse(demande, out entARetourner);
+                }
+                intEntered = false;
+                places[0] = entARetourner;
+                while (intEntered == false)
+                { // Il faut absolument que ce qu'entre l'utilisateur soit un nombre
+                    Console.WriteLine("Combien de places y a-t-il sur le 2eme côté de la table ?");
+                    Console.Write("-> ");
+                    demande = Console.ReadLine();
+                    intEntered = Int32.TryParse(demande, out entARetourner);
+                }
+                intEntered = false;
+                places[1] = entARetourner;
+                while (intEntered == false)
+                { // Il faut absolument que ce qu'entre l'utilisateur soit un nombre
+                    Console.WriteLine("Combien de places y a-t-il sur le 3eme côté de la table ?");
+                    Console.Write("-> ");
+                    demande = Console.ReadLine();
+                    intEntered = Int32.TryParse(demande, out entARetourner);
+                }
+                intEntered = false;
+                places[2] = entARetourner;
+                while (intEntered == false)
+                { // Il faut absolument que ce qu'entre l'utilisateur soit un nombre
+                    Console.WriteLine("Combien de places y a-t-il sur le 4eme côté de la table ?");
+                    Console.Write("-> ");
+                    demande = Console.ReadLine();
+                    intEntered = Int32.TryParse(demande, out entARetourner);
+                }
+                places[3] = entARetourner;
+
+
             }
 
         #endregion
