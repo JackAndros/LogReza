@@ -25,7 +25,7 @@ namespace LogicielReservation
                 Restaurant p = xs.Deserialize(rd) as Restaurant;
                 Console.WriteLine("Nom : {0}", p.monNom);
                 Console.WriteLine("Mdp : {0}", p.monMotDePasse);
-            }
+            } 
             Console.ReadKey();
 
             #region test

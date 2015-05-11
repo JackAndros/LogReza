@@ -3,3 +3,5 @@ C:\Users\Barret\documents\visual studio 2010\Projects\LogicielReservation\Logici
 C:\Users\Barret\documents\visual studio 2010\Projects\LogicielReservation\LogicielReservation\bin\Debug\LogicielReservation.pdb
 C:\Users\Barret\documents\visual studio 2010\Projects\LogicielReservation\LogicielReservation\obj\x86\Debug\LogicielReservation.exe
 C:\Users\Barret\documents\visual studio 2010\Projects\LogicielReservation\LogicielReservation\obj\x86\Debug\LogicielReservation.pdb
+C:\Users\Florian\Documents\GitHub\LogReza\obj\x86\Debug\LogicielReservation.exe
+C:\Users\Florian\Documents\GitHub\LogReza\obj\x86\Debug\LogicielReservation.pdb
