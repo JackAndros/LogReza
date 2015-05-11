@@ -12,6 +12,7 @@ namespace LogicielReservation
         #region variables
 
         protected string _nom;
+        private List<Plat> _plats;
         protected DateTime _tempsPresence;
         protected DateTime _tempsPreparation;
 
@@ -23,19 +24,25 @@ namespace LogicielReservation
         public DateTime monTempsPreparation
         {
             get { return _tempsPreparation; }
-            set { _tempsPreparation = value; }
+            protected set { _tempsPreparation = value; }
+        }
+
+        public List<Plat> mesPlats
+        {
+            get { return _plats; }
+            protected set { _plats = value; }
         }
 
         public DateTime monTempsPresence
         {
             get { return _tempsPresence; }
-            set { _tempsPresence = value; }
+            protected set { _tempsPresence = value; }
         }
 
         public string monNom
         {
             get { return _nom; }
-            set { _nom = value; }
+            protected set { _nom = value; }
         }
 
 
@@ -44,7 +51,16 @@ namespace LogicielReservation
 
         #region constructeur
 
+            public Formule() { }
 
+            public Formule(string nomFormule, Plat nomPlat) {
+                monNom = nomFormule;
+                mesPlats.Add(nomPlat);
+                monTempsPreparation = nomPlat.monTempsPreparation;
+                monTempsPresence = nomPlat.monTempsPresence;
+
+
+            }
 
         #endregion
 

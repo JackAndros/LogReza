@@ -13,10 +13,7 @@ namespace LogicielReservation
 
         private int _nbPlaces;
 
-        
-
         #endregion
-
 
 
         #region getters/setters
@@ -25,7 +22,7 @@ namespace LogicielReservation
         public int monNbPlaces
         {
             get { return _nbPlaces; }
-            set { _nbPlaces = value; }
+            protected set { _nbPlaces = value; }
         }
 
 
@@ -34,6 +31,11 @@ namespace LogicielReservation
 
         #region constructeur
 
+            public TableRonde() { }
+
+            public TableRonde(int places) {
+                monNbPlaces = places;
+            }
 
         #endregion
 

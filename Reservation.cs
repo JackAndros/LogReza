@@ -27,21 +27,21 @@ namespace LogicielReservation
         public string monNumeroReservation
         {
             get { return _numeroTelephone; }
-            set { _numeroTelephone = value; }
+            protected set { _numeroTelephone = value; }
         }
 
         [XmlElement("NomReservation")]
         public string monNomReservation
         {
             get { return _nomReservation; }
-            set { _nomReservation = value; }
+            protected set { _nomReservation = value; }
         }
 
         [XmlElement("Formule")]
         public string maFormule
         {
             get { return _formule; }
-            set { _formule = value; }
+            protected set { _formule = value; }
         }
 
 
@@ -49,7 +49,7 @@ namespace LogicielReservation
         public int monNbConvives
         {
             get { return _nbConvives; }
-            set { _nbConvives = value; }
+            protected set { _nbConvives = value; }
         }
 
 
@@ -57,7 +57,7 @@ namespace LogicielReservation
         public DateTime maDate
         {
             get { return _date; }
-            set { _date = value; }
+            protected set { _date = value; }
         }
         
 
@@ -67,7 +67,16 @@ namespace LogicielReservation
 
         #region constructeur
 
+        public Reservation() { }
 
+        public Reservation(DateTime dateRes, int convives, string formuleChoisie, string nomPersonneQuiReserve, string numeroTelephone) {
+            maDate = dateRes;
+            monNbConvives = convives;
+            maFormule = formuleChoisie;
+            monNomReservation = nomPersonneQuiReserve;
+            monNumeroReservation = numeroTelephone;
+            
+        }
 
         #endregion
 

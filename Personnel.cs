@@ -16,14 +16,9 @@ namespace LogicielReservation
         private static int _nbTotalSalarie;
         protected string _nom;
         protected string _prenom;
-        protected bool[] _joursTravail = new bool[7];
+        protected bool[] _joursTravail;
         protected DateTime[] _horairesTravail;
         private string _etat;
-
-        
-
-        
-
 
         #endregion
 
@@ -34,21 +29,21 @@ namespace LogicielReservation
         public int monNbTotalSalarie
         {
             get { return _nbTotalSalarie; }
-            set { _nbTotalSalarie = value; }
+            protected set { _nbTotalSalarie = value; }
         }
 
         [XmlElement("NumSalarie")]
         public int monNumSalarie
         {
             get { return _numSalarie; }
-            set { _numSalarie = value; }
+            protected set { _numSalarie = value; }
         }
 
         [XmlElement("Prenom")]
         public string monPrenom
         {
             get { return _prenom; }
-            set { _prenom = value; }
+            protected set { _prenom = value; }
         }
 
 
@@ -56,7 +51,7 @@ namespace LogicielReservation
         public string monNom
         {
             get { return _nom; }
-            set { _nom = value; }
+            protected set { _nom = value; }
         }
 
         [XmlArray("JoursTravail")]
@@ -64,7 +59,7 @@ namespace LogicielReservation
         public bool[] mesJoursTravail
         {
             get { return _joursTravail; }
-            set { _joursTravail = value; }
+            protected set { _joursTravail = value; }
         }
 
         [XmlArray("HorairesTravail")]
@@ -72,14 +67,14 @@ namespace LogicielReservation
         public DateTime[] mesHorairesTravail
         {
             get { return _horairesTravail; }
-            set { _horairesTravail = value; }
+            protected set { _horairesTravail = value; }
         }
 
         [XmlElement("Etat")]
         public string monEtat
         {
             get { return _etat; }
-            set { _etat = value; }
+            protected set { _etat = value; }
         }
         
 
@@ -89,6 +84,16 @@ namespace LogicielReservation
 
         #region constructeur
 
+            public Personnel() { }
+
+            public Personnel(string nomPerso, string prenomPerso, ) {
+                monNumSalarie = monNbTotalSalarie;
+                monNbTotalSalarie++;
+                mesJoursTravail = new bool[7];
+                mesHorairesTravail = new DateTime[7];
+                monEtat = "Libre";
+
+            }
 
         #endregion
 

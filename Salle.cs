@@ -38,6 +38,12 @@ namespace LogicielReservation
 
         #region constructeur
 
+        public Salle() { }
+
+        public Salle() {
+            mesTables = new List<Table>();
+        }
+
 
         #endregion
 

@@ -26,28 +26,28 @@ namespace LogicielReservation
         public DateTime monTempsPreparation
         {
             get { return _tempsPreparation; }
-            set { _tempsPreparation = value; }
+            protected set { _tempsPreparation = value; }
         }
 
 
         public DateTime monTempsPresence
         {
             get { return _tempsPresence; }
-            set { _tempsPresence = value; }
+            protected set { _tempsPresence = value; }
         }
 
 
         public string monType
         {
             get { return _type; }
-            set { _type = value; }
+            protected set { _type = value; }
         }
 
 
         public string monNom
         {
             get { return _nom; }
-            set { _nom = value; }
+            protected set { _nom = value; }
         }
         
 
@@ -55,6 +55,16 @@ namespace LogicielReservation
 
 
         #region constructeur
+
+        public Plat() { }
+
+        public Plat(string nomPlat, string typePlat, DateTime dureePresence, DateTime dureePreparation) {
+            monNom = nomPlat;
+            monType = typePlat;
+            monTempsPreparation = dureePreparation;
+            monTempsPresence = dureePresence;
+
+        }
 
 
         #endregion

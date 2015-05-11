@@ -19,15 +19,13 @@ namespace LogicielReservation
 
         #endregion
 
-
-
         #region getters/setters
 
         [XmlElement("NbPlaces")]
         public int[] monNbPlaces
         {
             get { return _nbPlaces; }
-            set { _nbPlaces = value; }
+            protected set { _nbPlaces = value; }
         }
 
         [XmlArray("CotesJumeles")]
@@ -35,7 +33,7 @@ namespace LogicielReservation
         public bool[] mesCotesJumeles
         {
             get { return _cotesJumeles; }
-            set { _cotesJumeles = value; }
+            protected set { _cotesJumeles = value; }
         }
 
 
@@ -44,7 +42,7 @@ namespace LogicielReservation
         public bool[] mesCotesJumelables
         {
             get { return _cotesJumelables; }
-            set { _cotesJumelables = value; }
+            protected set { _cotesJumelables = value; }
         }
         
 
@@ -54,12 +52,18 @@ namespace LogicielReservation
 
         #region constructeur
 
+            public TableRectangle() { }
+
+            public TableRectangle(int[] places)
+            {
+                monNbPlaces = places;
+                Console.WriteLine("");
+            }
 
         #endregion
 
 
         #region methodes
-
 
 
         #endregion

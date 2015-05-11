@@ -53,6 +53,15 @@ namespace LogicielReservation
 
         #region constructeur
 
+            public Table() { }
+
+            public Table(bool mobile) {
+                monNumTable = monNombreTotalTables;
+                monNombreTotalTables = monNombreTotalTables +1;
+                monEtat = "Libre";
+                maMobilite = mobile;
+            }
+
 
         #endregion
 

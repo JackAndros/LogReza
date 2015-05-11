@@ -29,14 +29,14 @@ namespace LogicielReservation
         public string monNom
         {
             get { return _nom; }
-            set { _nom = value; }
+            protected set { _nom = value; }
         }
 
         [XmlElement("MotDePasse")]
         public string monMotDePasse
         {
             get { return _motDePasse; }
-            set { _motDePasse = value; }
+            protected set { _motDePasse = value; }
         }
 
         [XmlArray("Salles")]
@@ -44,7 +44,7 @@ namespace LogicielReservation
         public List<Salle> mesSalles
         {
             get { return _salles; }
-            set { _salles = value; }
+            protected set { _salles = value; }
         }
 
         [XmlArray("Personnels")]
@@ -53,7 +53,7 @@ namespace LogicielReservation
         public List<Personnel> mesPersonnels
         {
             get { return _personnels; }
-            set { _personnels = value; }
+            protected set { _personnels = value; }
         }
 
         [XmlArray("Formules")]
@@ -61,7 +61,7 @@ namespace LogicielReservation
         public List<Formule> mesFormules
         {
             get { return _formules; }
-            set { _formules = value; }
+            protected set { _formules = value; }
         }
 
         [XmlArray("Reservations")]
@@ -69,7 +69,7 @@ namespace LogicielReservation
         public List<Reservation> mesReservations
         {
             get { return _reservations; }
-            set { _reservations = value; }
+            protected set { _reservations = value; }
         }
 
         [XmlArray("Horaires")]
@@ -77,7 +77,7 @@ namespace LogicielReservation
         public DateTime[] mesHoraires
         {
             get { return _horaires; }
-            set { _horaires = value; }
+            protected set { _horaires = value; }
         }
         /*
         public string DateOfBirthFormatted
