@@ -71,6 +71,24 @@ namespace LogicielReservation
                 }
                 intEntered = false;
                 places[0] = entARetourner;
+
+                while (intEntered == false)
+                {
+                    Console.WriteLine("Ce côté est-t-il jumelable ?");
+                    Console.WriteLine("'0':Non '1':Oui ?");
+                    Console.Write("-> ");
+                    demande = Console.ReadLine();
+                    intEntered = Int32.TryParse(demande, out entARetourner);
+                }
+                if (entARetourner >= 1)
+                {
+
+                }
+                else
+                {
+
+                }
+
                 while (intEntered == false)
                 { // Il faut absolument que ce qu'entre l'utilisateur soit un nombre
                     Console.WriteLine("Combien de places y a-t-il sur le 2eme côté de la table ?");
