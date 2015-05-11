@@ -15,9 +15,8 @@ namespace LogicielReservation
         private bool[] _cotesJumelables;
         private bool[] _cotesJumeles;
 
-
-
         #endregion
+
 
         #region getters/setters
 
@@ -44,7 +43,7 @@ namespace LogicielReservation
             get { return _cotesJumelables; }
             protected set { _cotesJumelables = value; }
         }
-        
+
 
 
         #endregion
@@ -52,16 +51,18 @@ namespace LogicielReservation
 
         #region constructeur
 
-            public TableRectangle() { }
-
-            public TableRectangle(int[] places)
-            {
-                monNbPlaces = places;
+        public TableRectangle()
+        {
 
                 bool intEntered = false;
                 int[] Places = new int[4];
+                bool[] Jumelables = new bool[4];
                 string demande;
                 int entARetourner = 0;
+
+
+                #region 1er côté
+
                 while (intEntered == false)
                 { // Il faut absolument que ce qu'entre l'utilisateur soit un nombre
                     Console.WriteLine("Combien de places y a-t-il sur le 1er côté de la table ?");
@@ -70,7 +71,7 @@ namespace LogicielReservation
                     intEntered = Int32.TryParse(demande, out entARetourner);
                 }
                 intEntered = false;
-                places[0] = entARetourner;
+                Places[0] = entARetourner;
 
                 while (intEntered == false)
                 {
@@ -82,13 +83,21 @@ namespace LogicielReservation
                 }
                 if (entARetourner >= 1)
                 {
-
+                    Jumelables[0] = false;
                 }
                 else
                 {
+                    Jumelables[0] = true;
 
                 }
+                intEntered = false;
 
+                #endregion
+
+
+                #region 2eme côté
+
+                // Questions sur le deuxieme côté
                 while (intEntered == false)
                 { // Il faut absolument que ce qu'entre l'utilisateur soit un nombre
                     Console.WriteLine("Combien de places y a-t-il sur le 2eme côté de la table ?");
@@ -97,7 +106,32 @@ namespace LogicielReservation
                     intEntered = Int32.TryParse(demande, out entARetourner);
                 }
                 intEntered = false;
-                places[1] = entARetourner;
+                Places[1] = entARetourner;
+
+                while (intEntered == false)
+                {
+                    Console.WriteLine("Ce côté est-t-il jumelable ?");
+                    Console.WriteLine("'0':Non '1':Oui ?");
+                    Console.Write("-> ");
+                    demande = Console.ReadLine();
+                    intEntered = Int32.TryParse(demande, out entARetourner);
+                }
+                if (entARetourner >= 1)
+                {
+                    Jumelables[1] = false;
+                }
+                else
+                {
+                    Jumelables[1] = true;
+
+                }
+                intEntered = false;
+
+                #endregion
+
+
+                #region 3eme côté
+
                 while (intEntered == false)
                 { // Il faut absolument que ce qu'entre l'utilisateur soit un nombre
                     Console.WriteLine("Combien de places y a-t-il sur le 3eme côté de la table ?");
@@ -106,7 +140,32 @@ namespace LogicielReservation
                     intEntered = Int32.TryParse(demande, out entARetourner);
                 }
                 intEntered = false;
-                places[2] = entARetourner;
+                Places[2] = entARetourner;
+
+                while (intEntered == false)
+                {
+                    Console.WriteLine("Ce côté est-t-il jumelable ?");
+                    Console.WriteLine("'0':Non '1':Oui ?");
+                    Console.Write("-> ");
+                    demande = Console.ReadLine();
+                    intEntered = Int32.TryParse(demande, out entARetourner);
+                }
+                if (entARetourner >= 1)
+                {
+                    Jumelables[2] = false;
+                }
+                else
+                {
+                    Jumelables[2] = true;
+
+                }
+                intEntered = false;
+
+                #endregion
+
+
+                #region 4eme côté
+
                 while (intEntered == false)
                 { // Il faut absolument que ce qu'entre l'utilisateur soit un nombre
                     Console.WriteLine("Combien de places y a-t-il sur le 4eme côté de la table ?");
@@ -114,7 +173,32 @@ namespace LogicielReservation
                     demande = Console.ReadLine();
                     intEntered = Int32.TryParse(demande, out entARetourner);
                 }
-                places[3] = entARetourner;
+                Places[3] = entARetourner;
+
+
+                while (intEntered == false)
+                {
+                    Console.WriteLine("Ce côté est-t-il jumelable ?");
+                    Console.WriteLine("'0':Non '1':Oui ?");
+                    Console.Write("-> ");
+                    demande = Console.ReadLine();
+                    intEntered = Int32.TryParse(demande, out entARetourner);
+                }
+                if (entARetourner >= 1)
+                {
+                    Jumelables[3] = false;
+                }
+                else
+                {
+                    Jumelables[3] = true;
+
+                }
+
+                #endregion
+
+                monNbPlaces = Places;
+                mesCotesJumelables = Jumelables;
+                mesCotesJumeles = new bool[] { false, false, false, false };
 
 
             }
