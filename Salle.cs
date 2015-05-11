@@ -25,19 +25,19 @@ namespace LogicielReservation
         public List<TableReservee> mesTablesReservees
         {
             get { return _tablesreservees; }
-            protected set { _tablesreservees = value; }
+            set { _tablesreservees = value; }
         }
 
         public List<Table> mesTables
         {
             get { return _tables; }
-            protected set { _tables = value; }
+            set { _tables = value; }
         }
 
         public string monNom
         {
             get { return _nom; }
-            protected set { _nom = value; }
+            set { _nom = value; }
         }
 
         #endregion
@@ -51,10 +51,8 @@ namespace LogicielReservation
 
         #region methodes
 
-            public Salle() { }
+            public Salle() { 
 
-            public Salle()
-            {
                 mesTables = new List<Table>();
             }
 
@@ -62,16 +60,19 @@ namespace LogicielReservation
         #endregion
 
         #region structures
+
         public struct TableReservee
         {
             Reservation reservation;
             Table table;
 
-            public TableReservee()
+            /*
+            public TableReservee() : this()
             {
                 reservation = null;
                 table = null;
             }
+            */
 
             public TableReservee(Reservation res, Table tab)
             {

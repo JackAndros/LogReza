@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 using System.IO;
+using System.Xml;
 
 namespace LogicielReservation
 {
@@ -15,17 +16,48 @@ namespace LogicielReservation
             XmlSerializer xs = new XmlSerializer(typeof(Restaurant));
 
             Restaurant r = new Restaurant("Cadjee", "azety");
-            using (StreamWriter wr = new StreamWriter("restaurant1.xml"))
+            using (StreamWriter wr = new StreamWriter("restaurant1.xml",true))
             {
                 xs.Serialize(wr, r);
             }
 
             using (StreamReader rd = new StreamReader("restaurant1.xml"))
             {
-                Restaurant p = xs.Deserialize(rd) as Restaurant;
+                    Restaurant p = xs.Deserialize(rd) as Restaurant;
                 Console.WriteLine("Nom : {0}", p.monNom);
                 Console.WriteLine("Mdp : {0}", p.monMotDePasse);
-            } 
+            }
+
+            XmlDocument xmlDoc = new XmlDocument();
+            XmlNode rootNode = xmlDoc.CreateElement("users");
+            xmlDoc.AppendChild(rootNode);
+
+            XmlNode userNode = xmlDoc.CreateElement("user");
+            XmlAttribute attribute = xmlDoc.CreateAttribute("age");
+            attribute.Value = "42";
+            userNode.Attributes.Append(attribute);
+            userNode.InnerText = "John Doe";
+            rootNode.AppendChild(userNode);
+
+            userNode = xmlDoc.CreateElement("user");
+            attribute = xmlDoc.CreateAttribute("age");
+            attribute.Value = "39";
+            userNode.Attributes.Append(attribute);
+            userNode.InnerText = "Jane Doe";
+            rootNode.AppendChild(userNode);
+
+            xmlDoc.Save("test-doc.xml");
+
+
+
+            xmlDoc = new XmlDocument();
+            xmlDoc.Load("test-doc.xml");
+            foreach (XmlNode xmlNode in xmlDoc.DocumentElement.ChildNodes[2].ChildNodes[0].ChildNodes)
+                Console.WriteLine(xmlNode.Attributes["currency"].Value + ": " + xmlNode.Attributes["rate"].Value);
+            Console.ReadKey();
+
+
+
             Console.ReadKey();
 
             #region test

@@ -24,7 +24,7 @@ namespace LogicielReservation
         public DateTime monTempsPreparation
         {
             get { return _tempsPreparation; }
-            protected set { _tempsPreparation = value; }
+            set { _tempsPreparation = value; }
         }
 
         public List<Plat> mesPlats
@@ -36,13 +36,13 @@ namespace LogicielReservation
         public DateTime monTempsPresence
         {
             get { return _tempsPresence; }
-            protected set { _tempsPresence = value; }
+            set { _tempsPresence = value; }
         }
 
         public string monNom
         {
             get { return _nom; }
-            protected set { _nom = value; }
+            set { _nom = value; }
         }
 
 

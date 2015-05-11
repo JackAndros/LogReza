@@ -26,28 +26,28 @@ namespace LogicielReservation
         public DateTime monTempsPreparation
         {
             get { return _tempsPreparation; }
-            protected set { _tempsPreparation = value; }
+            set { _tempsPreparation = value; }
         }
 
 
         public DateTime monTempsPresence
         {
             get { return _tempsPresence; }
-            protected set { _tempsPresence = value; }
+            set { _tempsPresence = value; }
         }
 
 
         public TypePlat monType
         {
             get { return _type; }
-            protected set { _type = value; }
+            set { _type = value; }
         }
 
 
         public string monNom
         {
             get { return _nom; }
-            protected set { _nom = value; }
+            set { _nom = value; }
         }
         
 

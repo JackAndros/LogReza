@@ -23,7 +23,7 @@ namespace LogicielReservation
             protected set { _rythmetravail = value; }
         }
 
-        protected List<Type> mesCapacites
+        public List<Type> mesCapacites
         {
             get { return _capacites; }
             protected set { _capacites = value; }

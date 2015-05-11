@@ -27,21 +27,21 @@ namespace LogicielReservation
         public string monNumeroReservation
         {
             get { return _numeroTelephone; }
-            protected set { _numeroTelephone = value; }
+            set { _numeroTelephone = value; }
         }
 
         [XmlElement("NomReservation")]
         public string monNomReservation
         {
             get { return _nomReservation; }
-            protected set { _nomReservation = value; }
+            set { _nomReservation = value; }
         }
 
         [XmlElement("Formule")]
         public string maFormule
         {
             get { return _formule; }
-            protected set { _formule = value; }
+            set { _formule = value; }
         }
 
 
@@ -49,7 +49,7 @@ namespace LogicielReservation
         public int monNbConvives
         {
             get { return _nbConvives; }
-            protected set { _nbConvives = value; }
+            set { _nbConvives = value; }
         }
 
 
@@ -57,7 +57,7 @@ namespace LogicielReservation
         public DateTime maDate
         {
             get { return _date; }
-            protected set { _date = value; }
+            set { _date = value; }
         }
         
 
