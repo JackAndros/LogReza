@@ -14,6 +14,7 @@ namespace LogicielReservation
 
             Salle t = new Salle("Grande Salle");
             t.tousTypesTables();
+            t.ajouterTable();
 
             Console.ReadKey();
 

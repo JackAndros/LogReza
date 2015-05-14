@@ -66,11 +66,11 @@ namespace LogicielReservation
             /// Cette fonction va permettre de 
             /// </summary>
             /// <param name=""></param> 
-            public List<object> tousTypesTables() {
+            public List<string> tousTypesTables() {
                 List<string> list = new List<string>();
                 List<object> listType = new List<object>();
                 var listeEnfants = Assembly.GetAssembly(typeof(Table)).GetTypes().Where(t => t.IsSubclassOf(typeof(Table)));
-                Console.WriteLine("typeList : " + listeEnfants.GetType());
+                //Console.WriteLine("typeList : " + listeEnfants.GetType());
 
                 /*
                 var listeEnfants = (from domainAssembly in AppDomain.CurrentDomain.GetAssemblies()
@@ -81,39 +81,37 @@ namespace LogicielReservation
                 foreach (var item in listeEnfants) {
                     list.Add(item.ToString().Split(new Char[] { '.' })[1]);
                     listType.Add(item);
-                    Console.WriteLine("typeChild : " + item.GetType());
-                    Console.WriteLine("typeChildString : " + item.ToString());
+                    //Console.WriteLine("typeChild : " + item.GetType());
+                    //Console.WriteLine("typeChildString : " + item.ToString());
 
                     //Console.WriteLine(item.ToString().Split(new Char[] { '.' })[1]);
                 }
 
-                return listType;
+                return list;
             }
 
             /// <summary>
             /// Cette fonction va permettre de 
             /// </summary>
             /// <param name=""></param> 
-            public void ajouterTable(Table t, Salle s) {
-                Console.Clear();
+            public void ajouterTable() {
+                //Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("*********************************");
                 Console.WriteLine("******* Ajout d'une table *******");
                 Console.WriteLine("*********************************");
-                Console.WriteLine("Quelle type de table voulez-vous ajouter ?");
+                Console.WriteLine("*** Quelle type de table voulez-vous ajouter ?");
+                Console.ResetColor();
 
-                List<object> typesTables =  tousTypesTables();
+                List<string> typesTables = tousTypesTables();
 
                 bool choixOk = false;
                 int choix = 0;
 
                 
                 do {
-                    Console.Clear();
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("");
-                    Console.WriteLine("*******************************************************************");
-                    Console.WriteLine("*** Choisissez votre type de table parmi la liste  ci-dessous ***");
-                    Console.WriteLine("*******************************************************************");
+                    Console.WriteLine("*** Choisissez votre type de table parmi la liste ci-dessous");
                     Console.WriteLine();
                     Console.ResetColor();
 
@@ -127,9 +125,16 @@ namespace LogicielReservation
                 }
                 while (!choixOk && (choix > typesTables.Count()) && (choix < 0));
 
+                Table t;
 
-                object nouvelleTable = typesTables[choix].GetType().GetProperties();
-
+                switch (choix) {
+                    case 1:
+                        t = new TableRectangle();
+                        break;
+                    case 2:
+                        t = new TableRonde();
+                        break;
+                }
                 
             }
 
@@ -163,6 +168,22 @@ namespace LogicielReservation
 
             }
 
+
+            /// <summary>
+            /// Cette fonction va permettre de 
+            /// </summary>
+            /// <param name=""></param> 
+            public void jumelerTables(Table table1, Table table2) {
+
+            }
+
+            /// <summary>
+            /// Cette fonction va permettre de 
+            /// </summary>
+            /// <param name=""></param> 
+            public void dejumelerTables(Table table1, Table table2) {
+
+            }
 
             /// <summary>
             /// Cette fonction va permettre de 
