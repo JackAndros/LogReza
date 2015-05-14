@@ -73,6 +73,12 @@ namespace LogicielReservation
 
         #region methodes
 
+        public override string ToString()
+        {
+            string texte = "";
+            texte = "Le plat " + monNom + " est du type " + monTypePlat + ". Cela prend " + monTempsPreparation + " pour le préparer et il fait rester " + monTempsPresence;
+            return texte;
+        }
         /// <summary>
         /// Cette fonction va permettre de changer le temps de préparation du plat.
         /// </summary>

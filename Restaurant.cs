@@ -25,7 +25,7 @@ namespace LogicielReservation
 
 
         #region getters/setters
-        
+
         [XmlElement("Nom")]
         public string monNom
         {
@@ -93,8 +93,9 @@ namespace LogicielReservation
 
         #region constructeur
 
-        public Restaurant() { 
-            
+        public Restaurant()
+        {
+
         }
 
         public Restaurant(String restaurant, string mdp)
@@ -109,7 +110,7 @@ namespace LogicielReservation
             mesHoraires = new DateTime[4];
             monNom = restaurant;
             monMotDePasse = mdp;
-        }   
+        }
 
         #endregion
 
@@ -124,10 +125,10 @@ namespace LogicielReservation
         public override string ToString()
         {
             string st = "";
-            
+
             st += "Mon nom " + monNom + " \n";
             st += "Mdp " + monMotDePasse + " \n";
-            
+
             return st;
         }
 
@@ -136,23 +137,26 @@ namespace LogicielReservation
         /// Cette fonction va permettre de 
         /// </summary>
         /// <param name=""></param> 
-        public void ajouterSalle(string s) {
+        public void ajouterSalle(string s)
+        {
 
             Salle salle = chercheSalle(s);
-            if (salle==null) {
+            if (salle == null)
+            {
 
 
                 mesSalles.Add(salle);
-                
+
             }
         }
 
-        
+
         /// <summary>
         /// Cette fonction va permettre de 
         /// </summary>
         /// <param name=""></param> 
-        public void supprimerSalle() {
+        public void supprimerSalle()
+        {
 
 
         }
@@ -162,7 +166,8 @@ namespace LogicielReservation
         /// Cette fonction va permettre de 
         /// </summary>
         /// <param name=""></param> 
-        public int cherchePositionSalle(string s) {
+        public int cherchePositionSalle(string s)
+        {
             var index = mesSalles.FindIndex(item => item.monNom == s);
 
             return (int)index;
@@ -172,9 +177,11 @@ namespace LogicielReservation
         /// Cette fonction va permettre de 
         /// </summary>
         /// <param name=""></param> 
-        public Salle chercheSalle(string s) {
+        public Salle chercheSalle(string s)
+        {
             Salle salle = null;
-            if (mesSalles.Exists(item => item.monNom == s)) {
+            if (mesSalles.Exists(item => item.monNom == s))
+            {
                 salle = mesSalles.Find(item => item.monNom == s);
             }
 
@@ -186,9 +193,11 @@ namespace LogicielReservation
         /// Cette fonction va permettre de créer un fichier XML avec les informations caractérisant un restaurant
         /// </summary>
         /// <param name=""></param> 
-        public void sauveInfosRestaurant() {
+        public void sauveInfosRestaurant()
+        {
             XmlSerializer xs = new XmlSerializer(typeof(Restaurant));
-            using (StreamWriter wr = new StreamWriter("../../../DonneesRestaurants/"+monNom+"/restaurant.xml", true)) {
+            using (StreamWriter wr = new StreamWriter("../../../DonneesRestaurants/" + monNom + "/restaurant.xml", true))
+            {
                 xs.Serialize(wr, this);
             }
 
@@ -209,7 +218,7 @@ namespace LogicielReservation
             nomRestaurant.InnerText = this.monNom;
             restaurantNode.AppendChild(nomRestaurant);
 
-            
+
 
             //Sauvegarde de la liste des tables
             XmlNode listesTables = rootRestau.CreateElement("Tables");
@@ -220,7 +229,7 @@ namespace LogicielReservation
             restaurantNode.AppendChild(listesTables);
 
             /*
-            
+                
             //Sauvegarde de la liste des formules
             XmlNode listeFormules = rootRestau.CreateElement("listeFormules");
             foreach (var formule in listeFormules)
@@ -249,7 +258,7 @@ namespace LogicielReservation
 
 
             restaurantNode.AppendChild(listeReservations);
-             
+                 
             */
 
             rootRestau.Save(monNom + ".xml");
@@ -266,7 +275,7 @@ namespace LogicielReservation
 
 
         /// <summary>
-        /// Cette fonction va permettre de 
+        /// Cette fonction va permettre de liste les salles du restaurant, avec leur nom et le nombre de salles (dont celles réservées)
         /// </summary>
         /// <param name=""></param> 
         public void listerSalles()
@@ -274,9 +283,9 @@ namespace LogicielReservation
             Console.Clear();
             Console.WriteLine("-------------------\n");
             Console.WriteLine("Voici la liste des salles : \n");
-            for (int i = 0; i < mesSalles.Count; i++)
+            foreach(Salle salle in mesSalles)
             {
-                Console.WriteLine("La salle {0} comporte {1} tables dont {2} tables réservées.\n", (i + 1), mesSalles[i].mesTables.Count, mesSalles[i].mesTablesReservees.Count);
+                Console.WriteLine("La salle {0} comporte {1} tables dont {2} tables réservées.\n", salle.monNom, salle.mesTables.Count, salle.mesTablesReservees.Count);
             }
         }
 
@@ -284,18 +293,24 @@ namespace LogicielReservation
         /// Cette fonction va permettre de 
         /// </summary>
         /// <param name=""></param> 
-        public void listerTablesSalle(int n)
+        public void listerTables()
         {
         }
 
 
         /// <summary>
-        /// Cette fonction va permettre de 
+        /// Cette fonction va permettre d'afficher les différentes formules du restaurant.
         /// </summary>
         /// <param name=""></param> 
         public void listerFormules()
         {
-
+            Console.Clear();
+            Console.WriteLine("-------------------\n");
+            Console.WriteLine("Voici la liste des formules : \n");
+            foreach(Formule formule in mesFormules)
+            {
+                formule.afficherFormule();
+            }
         }
 
 
