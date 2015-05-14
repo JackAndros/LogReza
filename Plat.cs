@@ -73,6 +73,10 @@ namespace LogicielReservation
 
         #region methodes
 
+        /// <summary>
+        /// Cette fonction va permettre de changer le temps de préparation du plat.
+        /// </summary>
+        /// <param name="type">Le nouveau type du plat.</param>
         public void changerTypePlat(TypePlat type)
         {
             if (monTypePlat != type)
@@ -84,6 +88,10 @@ namespace LogicielReservation
             { Console.WriteLine("C'est déjà le type de ce plat."); }
         }
 
+        /// <summary>
+        /// Cette fonction va permettre de changer le temps de préparation du plat.
+        /// </summary>
+        /// <param name="nouvtps">Le nouveau temps de préparation du plat.</param>
         public void changerTempsPreparation(DateTime nouvtps)
         {
             if (monTempsPreparation != nouvtps)
@@ -95,6 +103,10 @@ namespace LogicielReservation
             { Console.WriteLine("C'est déjà le temps de préparation de ce plat"); }
         }
 
+        /// <summary>
+        /// Cette fonction va permettre de changer le temps de présence dû à ce plat.
+        /// </summary>
+        /// <param name="nouvtps">Le nouveaux temps de présence dû à ce plat.</param>
         public void changerTempsPresence(DateTime nouvtps)
         {
             if (monTempsPresence != nouvtps)
