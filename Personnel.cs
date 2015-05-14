@@ -18,7 +18,7 @@ namespace LogicielReservation
         protected string _prenom;
         protected bool[] _joursTravail;
         protected DateTime[] _horairesTravail;
-        protected string _etat;
+        protected string _etatPersonnel;
 
         #endregion
 
@@ -73,8 +73,8 @@ namespace LogicielReservation
         [XmlElement("Etat")]
         public string monEtat
         {
-            get { return _etat; }
-            protected set { _etat = value; }
+            get { return _etatPersonnel; }
+            protected set { _etatPersonnel = value; }
         }
 
 
@@ -106,11 +106,29 @@ namespace LogicielReservation
 
         #region methodes
 
-        public void changerEtat(string nouvEtat)
+        public void changerEtatPersonnel(EtatPersonnel nouvEtatPersonnel)
         {
-            monEtat = nouvEtat;
-            Console.WriteLine("L'état de {0} {1} a été changé en {2}", monPrenom, monNom, nouvEtat);
+            monEtatPersonnel = nouvEtatPersonnel;
+            Console.WriteLine("L'état de {0} {1} a été changé en {2}", monPrenom, monNom, nouvEtatPersonnel);
         }
+
+        public void changerJoursTravail(bool[] nouvJour)
+        {
+            if (nouvJour.Length == 7)
+            {
+                mesJoursTravail = nouvJour;
+            }
+            else
+            {
+                Console.WriteLine("Entrez un tableau de 7 booléens en entrée.");
+            }
+        }
+
+        public void changerHoraires(DateTime[] nouvHoraires)
+        {
+            mesHorairesTravail = nouvHoraires;
+        }
+        #endregion
 
 
         #endregion
