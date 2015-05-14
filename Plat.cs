@@ -12,7 +12,7 @@ namespace LogicielReservation
         #region variables
 
         private string _nom;
-        private TypePlat _type;
+        private string _type;
         private DateTime _tempsPresence;
         private DateTime _tempsPreparation;
 
@@ -37,7 +37,7 @@ namespace LogicielReservation
         }
 
 
-        public TypePlat monType
+        public string monType
         {
             get { return _type; }
             set { _type = value; }
@@ -58,7 +58,8 @@ namespace LogicielReservation
 
         public Plat() { }
 
-        public Plat(string nomPlat, TypePlat type, DateTime dureePresence, DateTime dureePreparation) {
+        public Plat(string nomPlat, string type, DateTime dureePresence, DateTime dureePreparation)
+        {
             monNom = nomPlat;
             monType = type;
             monTempsPreparation = dureePreparation;
@@ -77,7 +78,7 @@ namespace LogicielReservation
         #endregion
 
         #region enumerations
-        new public enum TypePlat { Entree, Plat, Dessert }
+        //new public enum TypePlat { Entree, Plat, Dessert }
         #endregion
 
     }

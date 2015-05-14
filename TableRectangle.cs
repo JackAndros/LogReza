@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 using System.IO;
+using System.Xml;
 
 namespace LogicielReservation
 {
@@ -43,7 +44,6 @@ namespace LogicielReservation
             get { return _cotesJumelables; }
             protected set { _cotesJumelables = value; }
         }
-
 
 
         #endregion
@@ -200,7 +200,6 @@ namespace LogicielReservation
                 mesCotesJumelables = Jumelables;
                 mesCotesJumeles = new bool[] { false, false, false, false };
 
-
             }
 
         #endregion
@@ -208,6 +207,40 @@ namespace LogicielReservation
 
         #region methodes
 
+        /// <summary>
+        /// Cette fonction va permettre de 
+        /// </summary>
+        /// <param name=""></param> 
+        public void jumeler(int monCoteAJumeler, TableRectangle tableAJumeler, int coteAutreTableAJumeler)
+        {
+
+        }
+
+        /// <summary>
+        /// Cette fonction va permettre de 
+        /// </summary>
+        /// <param name=""></param> 
+        public override void sauveTable(XmlDocument docResto, XmlNode listeTables)
+        {
+            XmlNode rootNode = docResto.CreateElement("table");
+
+            XmlAttribute typeTable = docResto.CreateAttribute("typeTable");
+            typeTable.Value = this.GetType().ToString();
+            rootNode.Attributes.Append(typeTable);
+
+            XmlNode numTable = docResto.CreateElement("NumeroTable");
+            numTable.InnerText = this.monNumTable.ToString();
+            XmlNode mobilite = docResto.CreateElement("Mobilite");
+            mobilite.InnerText = this.maMobilite.ToString();
+            XmlNode etat = docResto.CreateElement("Etat");
+            etat.InnerText = this.monEtat.ToString();
+
+            rootNode.AppendChild(numTable);
+            rootNode.AppendChild(mobilite);
+            rootNode.AppendChild(etat);
+
+            listeTables.AppendChild(rootNode);
+        }
 
         #endregion
 

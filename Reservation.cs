@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 using System.IO;
+using System.Xml;
 
 namespace LogicielReservation
 {
@@ -17,6 +18,7 @@ namespace LogicielReservation
         private string _formule;
         private string _nomReservation;
         private string _numeroTelephone;
+
 
         #endregion
 

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 using System.IO;
+using System.Xml;
+using System.Reflection;
 
 namespace LogicielReservation
 {
@@ -18,7 +20,6 @@ namespace LogicielReservation
         protected bool _mobile;
 
         #endregion
-
 
 
         #region getters/setters
@@ -67,8 +68,80 @@ namespace LogicielReservation
 
 
         #region methodes
+            /// <summary>
+            /// Cette fonction va permettre de 
+            /// </summary>
+            /// <param name=""></param> 
+            public override string ToString()
+            {
+                string st = "";
+                st += "Mon numero:" + _nbTable + "     _nbTotalTables:" + _nbTotalTables + "     _etat:" + _etat;
+                return st;
+            }
 
 
+            /// <summary>
+            /// Cette fonction va permettre de 
+            /// </summary>
+            /// <param name=""></param> 
+            public void ajouterTable() {
+
+            }
+
+            
+
+
+            /// <summary>
+            /// Cette fonction va permettre de 
+            /// </summary>
+            /// <param name=""></param> 
+            public virtual void sauveTable(XmlDocument docResto, XmlNode listeTables) { }
+
+
+            /// <summary>
+            /// Cette fonction va permettre de 
+            /// </summary>
+            /// <param name=""></param> 
+            public static int demanderEntier(int entierDebut, int entierFin)
+            {
+                int entARetourner = 0;
+                bool boolean = false;
+                string demande;
+                // Si entierDebut ou entierFin vaut -1, il n'est pas considéré utile
+                if ((entierDebut != -1) && (entierFin == -1))
+                {
+                    while ((boolean == false) || (entARetourner < entierDebut))
+                    { // Il faut absolument que ce qu'entre l'utilisateur soit un nombre
+                        Console.WriteLine("Entrez un entier supérieur ou égal à {0}.", entierDebut);
+                        Console.Write("-> ");
+                        demande = Console.ReadLine();
+                        boolean = Int32.TryParse(demande, out entARetourner);
+                    }
+                }
+                else if ((entierDebut == -1) && (entierFin != -1))
+                {
+                    entARetourner = 5000;
+                    while ((boolean == false) || (entARetourner > entierFin))
+                    {
+                        Console.WriteLine("Entrez un entier inférieur ou égal à {0}.", entierFin);
+                        Console.Write("-> ");
+                        demande = Console.ReadLine();
+                        boolean = Int32.TryParse(demande, out entARetourner);
+                        if (entARetourner == 0) entARetourner = 5000;
+                    }
+                }
+                else
+                {
+                    while ((boolean == false) || (entARetourner > entierFin) || (entARetourner < entierDebut))
+                    {
+                        Console.WriteLine("Entrez un entier compris entre {0} et {1}.", entierDebut, entierFin);
+                        Console.Write("-> ");
+                        demande = Console.ReadLine();
+                        boolean = Int32.TryParse(demande, out entARetourner);
+                    }
+                }
+                return entARetourner;
+            }
 
         #endregion
 

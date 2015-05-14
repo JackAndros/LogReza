@@ -10,9 +10,22 @@ namespace LogicielReservation
 {
     class Program
     {
-        static void Main(string[] args)
-        {
+        static void Main(string[] args) {
 
+            Salle t = new Salle("Grande Salle");
+            t.tousTypesTables();
+
+            Console.ReadKey();
+
+            #region test serialisation table
+
+            //Restaurant r = new Restaurant("test", "mdp");
+
+            #endregion
+
+            #region test1
+
+            /*
             XmlSerializer xs = new XmlSerializer(typeof(Restaurant));
 
             Restaurant r = new Restaurant("Cadjee", "azety");
@@ -57,29 +70,71 @@ namespace LogicielReservation
             Console.ReadKey();
 
 
+            */
 
-            Console.ReadKey();
+            #endregion
 
-            #region test
+            #region test2
 
             /*
+
+            XmlDocument docResto = new XmlDocument();
+            XmlNode listesTables = docResto.CreateElement("Tables");
+
+            XmlNode rootNode = docResto.CreateElement("table");
+
+            XmlNode numTable = docResto.CreateElement("NumeroTable");
+            numTable.InnerText = "aze";
+            XmlNode mobilite = docResto.CreateElement("Mobilite");
+            mobilite.InnerText = "qsdé";
+            XmlNode etat = docResto.CreateElement("Etat");
+            etat.InnerText = "aze";
+
+            rootNode.AppendChild(numTable);
+            rootNode.AppendChild(mobilite);
+            rootNode.AppendChild(etat);
+
+            listesTables.AppendChild(rootNode);
+            docResto.AppendChild(listesTables);
+
+            docResto.Save("test" + ".xml");
+
+            */
+
+            #endregion
+
+            #region Real
+
+            string pathToAllDir = "../../../DonneesRestaurants";
+
+            string[] tempListDir = Directory.GetDirectories(pathToAllDir);
+            List<string> listDirectories = new List<string>();
+
+            foreach (var item in tempListDir) {
+                listDirectories.Add(item.Split(new Char[] { '\\' })[1]);
+            }
+
             int choix = 0;
             bool quitte = false;
             bool choixOk = false;
-            string nomrestaurant;
+            List<Restaurant> listRestaurants = new List<Restaurant>();
+            string nomRestaurant;
+            string pathRestaurant;
 
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("");
-                Console.WriteLine("*****************************************************");
-                Console.WriteLine("Bienvenue sur le logiciel de gestion de réservations.");
-                Console.WriteLine("*****************************************************");
-                Console.ResetColor();
-                Console.WriteLine("");
 
             //Gestion du menu
             while (!quitte)
             {
-                Console.WriteLine("\n[1] Ouvrir un restaurant existant \n[2] Créer un restaurant \n \n \n[0] Quitter");
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("");
+                Console.WriteLine("*************************************************************");
+                Console.WriteLine("**** Bienvenue sur le logiciel de gestion de réservations ***");
+                Console.WriteLine("**************** Menu principal du logiciel *****************");
+                Console.WriteLine("*************************************************************");
+                Console.ResetColor();
+                Console.WriteLine("");
+                Console.WriteLine("\n[1] Choisir un restaurant parmi ceux déjà existants dans le logiciel \n[2] Créer un restaurant \n \n \n[0] Quitter");
                 choixOk = false;
                 do
                 {
@@ -92,20 +147,80 @@ namespace LogicielReservation
                 switch (choix)
                 {
                     case 1:
-                        Console.WriteLine("Entrez le nom du restaurant");
-                        nomrestaurant = Console.ReadLine();
-                        ChoixRestaurant(nomrestaurant);  //Fonction à créer (avec recherche sur un dossier) qui permet d'accéder à "MenuRestaurant" avec pour entrée le restaurant choisi
+                        ChoixRestaurant(listDirectories); 
                         break;
                     case 2:
-                        CreerRestaurant(); //Fonction à créer (avec création d'un dossier) qui permet ensuite d'accéder à "MenuRestaurant" avec pour entrée le restaurant créé
+                        Restaurant r = CreerRestaurant();
+                        listRestaurants.Add(r); //Fonction à créer (avec création d'un dossier) qui permet ensuite d'accéder à "MenuRestaurant" avec pour entrée le restaurant créé
+                        listDirectories.Add(r.monNom);                        
                         break;
                     case 0:
                         quitte = true;
                         break;
                 }
+                choix = 0;
             }
-            */
+            
             #endregion
+
+        }
+
+        /// <summary>
+        /// Cette fonction va permettre de créer un nouveau restaurant avec le peu d'informations nécessaires, et de créer un dossier qui lui sera propre
+        /// </summary>
+        public static Restaurant CreerRestaurant(){
+            Console.WriteLine("");
+            Console.WriteLine("*****************************************");
+            Console.WriteLine("*** Création d'un nouveau restaurant ***");
+            Console.WriteLine("*****************************************");
+
+            Console.WriteLine("");
+            Console.WriteLine("Quel est le nom de votre restaurant ?");
+            String nomRest = Console.ReadLine();
+
+            Console.WriteLine("");
+            Console.WriteLine("Quel est le mot de passe de votre restaurant ?");
+            String mdpRest = Console.ReadLine();
+
+            Restaurant r = new Restaurant(nomRest, mdpRest);
+
+            System.IO.Directory.CreateDirectory("../../../DonneesRestaurants/" + nomRest);
+
+            r.sauveInfosRestaurant();
+
+            return r;
+        }
+
+
+        /// <summary>
+        /// Cette fonction va permettre d'accéder à "MenuRestaurant" avec pour entrée le restaurant choisi
+        /// </summary>
+        /// <param name=""></param> 
+        public static void ChoixRestaurant(List<string> listRestaurants)
+        {
+            bool choixOk = false;
+            int choix = 0;
+            do {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("");
+                Console.WriteLine("*****************************************************************************");
+                Console.WriteLine("*** Choisissez votre restaurant parmi la liste des restaurants ci-dessous ***");
+                Console.WriteLine("*****************************************************************************");
+                Console.WriteLine();
+                Console.ResetColor();
+
+
+                for (int i = 0; i < listRestaurants.Count(); i++) {
+                    Console.WriteLine("[{0}]  : {1}", i, listRestaurants[i]);
+                }
+
+                choixOk = Int32.TryParse(Console.ReadLine(), out choix);
+
+            }
+            while (!choixOk && (choix > listRestaurants.Count()) && (choix < 0));
+
+            MenuRestaurant(listRestaurants[choix]);
 
         }
 
@@ -113,19 +228,27 @@ namespace LogicielReservation
         /// Gestion du menu interne au restaurant. Permet d'accéder au menu de chaque fonction
         /// </summary>
         /// <param name="restaurant">Le restaurant choisi par l'utilisateur</param>
-        /*
-        public static void MenuRestaurant(Restaurant restaurant)
+        public static void MenuRestaurant(string restaurant)
         {
             Console.Clear();
-
+            string pathToAllDir = "../../../DonneesRestaurants";
             int choix = 0;
             bool quitte = false;
             bool choixOk = false;
+            Restaurant restaurantChoisi;
+
+            XmlSerializer xs = new XmlSerializer(typeof(Restaurant));
+
+            using (StreamReader rd = new StreamReader(pathToAllDir+"/"+restaurant+"/restaurant.xml")) {
+                restaurantChoisi = xs.Deserialize(rd) as Restaurant;
+            }
+
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("");
-            Console.WriteLine("*****************************************************");
-            Console.WriteLine("***Bienvenue sur le logiciel de gestion de réservations***");
-            Console.WriteLine("*****************************************************");
+            Console.WriteLine("************************************************************");
+            Console.WriteLine("*** Bienvenue sur le logiciel de gestion de réservations ***");
+            Console.WriteLine("******************** Restaurant {0} *********************", restaurant);
+            Console.WriteLine("************************************************************");
             Console.ResetColor();
             Console.WriteLine("");
 
@@ -145,25 +268,25 @@ namespace LogicielReservation
                 switch (choix)
                 {
                     case 1:
-                        restaurant.MenuReservations();
+                        restaurantChoisi.listerReservations();
                         break;
                     case 2:
-                        restaurant.MenuSalles();
+                        restaurantChoisi.listerSalles();
                         break;
                     case 3:
-                        restaurant.MenuTables();
+                        restaurantChoisi.listerTables();
                         break;
                     case 4:
-                        restaurant.MenuFormules();
+                        restaurantChoisi.listerFormules();
                         break;
                     case 5:
-                        restaurant.MenuPlats();
+                        restaurantChoisi.listerPlats();
                         break;
                     case 6:
-                        restaurant.MenuPersonnel();
+                        restaurantChoisi.listerPersonnels();
                         break;
                     case 7:
-                        restaurant.MenuParametres();
+                        restaurantChoisi.listerParametres();
                         break;
                     case 0:
                         quitte = true;
@@ -172,7 +295,6 @@ namespace LogicielReservation
             }
         }
 
-        */
 
     }
  }

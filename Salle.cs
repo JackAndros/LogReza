@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 using System.IO;
+using System.Xml;
+using System.Reflection;
 
 namespace LogicielReservation
 {
@@ -45,19 +47,147 @@ namespace LogicielReservation
 
         #region constructeur
 
+        public Salle() {
+
+        }
+
+        public Salle(string nom) {
+            monNom = nom;
+            mesTables = new List<Table>();
+            mesTablesReservees = new List<TableReservee>();
+        }
 
         #endregion
 
 
         #region methodes
 
-            public Salle() { 
+            /// <summary>
+            /// Cette fonction va permettre de 
+            /// </summary>
+            /// <param name=""></param> 
+            public List<object> tousTypesTables() {
+                List<string> list = new List<string>();
+                List<object> listType = new List<object>();
+                var listeEnfants = Assembly.GetAssembly(typeof(Table)).GetTypes().Where(t => t.IsSubclassOf(typeof(Table)));
+                Console.WriteLine("typeList : " + listeEnfants.GetType());
 
-                mesTables = new List<Table>();
+                /*
+                var listeEnfants = (from domainAssembly in AppDomain.CurrentDomain.GetAssemblies()
+                                from assemblyType in domainAssembly.GetTypes()
+                                where typeof(Table).IsSubclassOf(assemblyType)
+                                select assemblyType).ToArray();
+                */
+                foreach (var item in listeEnfants) {
+                    list.Add(item.ToString().Split(new Char[] { '.' })[1]);
+                    listType.Add(item);
+                    Console.WriteLine("typeChild : " + item.GetType());
+                    Console.WriteLine("typeChildString : " + item.ToString());
+
+                    //Console.WriteLine(item.ToString().Split(new Char[] { '.' })[1]);
+                }
+
+                return listType;
+            }
+
+            /// <summary>
+            /// Cette fonction va permettre de 
+            /// </summary>
+            /// <param name=""></param> 
+            public void ajouterTable(Table t, Salle s) {
+                Console.Clear();
+                Console.WriteLine("*********************************");
+                Console.WriteLine("******* Ajout d'une table *******");
+                Console.WriteLine("*********************************");
+                Console.WriteLine("Quelle type de table voulez-vous ajouter ?");
+
+                List<object> typesTables =  tousTypesTables();
+
+                bool choixOk = false;
+                int choix = 0;
+
+                
+                do {
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("");
+                    Console.WriteLine("*******************************************************************");
+                    Console.WriteLine("*** Choisissez votre type de table parmi la liste  ci-dessous ***");
+                    Console.WriteLine("*******************************************************************");
+                    Console.WriteLine();
+                    Console.ResetColor();
+
+
+                    for (int i = 0; i < typesTables.Count(); i++) {
+                        Console.WriteLine("[{0}]  : {1}", i, typesTables[i]);
+                    }
+
+                    choixOk = Int32.TryParse(Console.ReadLine(), out choix);
+
+                }
+                while (!choixOk && (choix > typesTables.Count()) && (choix < 0));
+
+
+                object nouvelleTable = typesTables[choix].GetType().GetProperties();
+
+                
             }
 
 
+            /// <summary>
+            /// Cette fonction va permettre de 
+            /// </summary>
+            /// <param name=""></param> 
+            public void supprimerTable(Table t) {
+
+
+            }
+
+
+            /// <summary>
+            /// Cette fonction va permettre de 
+            /// </summary>
+            /// <param name=""></param> 
+            public void chercheTable() {
+
+
+            }
+
+
+            /// <summary>
+            /// Cette fonction va permettre de 
+            /// </summary>
+            /// <param name=""></param> 
+            public void cherchePositionTable() {
+
+
+            }
+
+
+            /// <summary>
+            /// Cette fonction va permettre de 
+            /// </summary>
+            /// <param name=""></param> 
+            public void actualiserTables() {
+
+
+            }
+
+
+
+            /// <summary>
+            /// Cette fonction va permettre de 
+            /// </summary>
+            /// <param name=""></param> 
+            public void actualiserTablesReservees() {
+
+
+            }
+
+
+
         #endregion
+
 
         #region structures
 
