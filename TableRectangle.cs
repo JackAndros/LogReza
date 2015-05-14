@@ -14,7 +14,7 @@ namespace LogicielReservation
 
         private int[] _nbPlaces;
         private bool[] _cotesJumelables;
-        private bool[] _cotesJumeles;
+        private Table[] _cotesJumeles;
 
         #endregion
 
@@ -206,15 +206,6 @@ namespace LogicielReservation
 
 
         #region methodes
-
-        /// <summary>
-        /// Cette fonction va permettre de 
-        /// </summary>
-        /// <param name=""></param> 
-        public void jumeler(int monCoteAJumeler, TableRectangle tableAJumeler, int coteAutreTableAJumeler)
-        {
-
-        }
 
         /// <summary>
         /// Cette fonction va permettre de 
