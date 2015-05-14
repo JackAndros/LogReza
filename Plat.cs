@@ -12,7 +12,7 @@ namespace LogicielReservation
         #region variables
 
         private string _nom;
-        private string _type;
+        private TypePlat _typePlat;
         private DateTime _tempsPresence;
         private DateTime _tempsPreparation;
 
@@ -37,10 +37,10 @@ namespace LogicielReservation
         }
 
 
-        public string monType
+        public TypePlat monTypePlat
         {
-            get { return _type; }
-            set { _type = value; }
+            get { return _typePlat; }
+            set { _typePlat = value; }
         }
 
 
@@ -58,10 +58,10 @@ namespace LogicielReservation
 
         public Plat() { }
 
-        public Plat(string nomPlat, string type, DateTime dureePresence, DateTime dureePreparation)
+        public Plat(string nomPlat, TypePlat type, DateTime dureePresence, DateTime dureePreparation)
         {
             monNom = nomPlat;
-            monType = type;
+            monTypePlat = type;
             monTempsPreparation = dureePreparation;
             monTempsPresence = dureePresence;
 
@@ -73,12 +73,44 @@ namespace LogicielReservation
 
         #region methodes
 
+        public void changerTypePlat(TypePlat type)
+        {
+            if (monTypePlat != type)
+            {
+                monTypePlat = type;
+                Console.WriteLine("Changement effectué");
+            }
+            else
+            { Console.WriteLine("C'est déjà le type de ce plat."); }
+        }
+
+        public void changerTempsPreparation(DateTime nouvtps)
+        {
+            if (monTempsPreparation != nouvtps)
+            {
+                monTempsPreparation = nouvtps;
+                Console.WriteLine("Changement effectué");
+            }
+            else
+            { Console.WriteLine("C'est déjà le temps de préparation de ce plat"); }
+        }
+
+        public void changerTempsPresence(DateTime nouvtps)
+        {
+            if (monTempsPresence != nouvtps)
+            {
+                monTempsPresence = nouvtps;
+                Console.WriteLine("Changement effectué");
+            }
+            else
+            { Console.WriteLine("C'est déjà le temps de présence de ce plat"); }
+        }
 
 
         #endregion
 
         #region enumerations
-        //new public enum TypePlat { Entree, Plat, Dessert }
+        new public enum TypePlat { Entree, Plat, Accompagnement, Dessert }
         #endregion
 
     }

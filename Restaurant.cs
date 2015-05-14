@@ -254,7 +254,6 @@ namespace LogicielReservation
 
             rootRestau.Save(monNom + ".xml");
         }
-        
 
         /// <summary>
         /// Cette fonction va permettre de 
@@ -272,17 +271,21 @@ namespace LogicielReservation
         /// <param name=""></param> 
         public void listerSalles()
         {
-
+            Console.Clear();
+            Console.WriteLine("-------------------\n");
+            Console.WriteLine("Voici la liste des salles : \n");
+            for (int i = 0; i < mesSalles.Count; i++)
+            {
+                Console.WriteLine("La salle {0} comporte {1} tables dont {2} tables réservées.\n", (i + 1), mesSalles[i].mesTables.Count, mesSalles[i].mesTablesReservees.Count);
+            }
         }
-
 
         /// <summary>
         /// Cette fonction va permettre de 
         /// </summary>
         /// <param name=""></param> 
-        public void listerTables()
+        public void listerTablesSalle(int n)
         {
-
         }
 
 

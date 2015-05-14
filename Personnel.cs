@@ -18,7 +18,7 @@ namespace LogicielReservation
         protected string _prenom;
         protected bool[] _joursTravail;
         protected DateTime[] _horairesTravail;
-        protected string _etatPersonnel;
+        protected EtatPersonnel _etatPersonnel;
 
         #endregion
 
@@ -70,8 +70,8 @@ namespace LogicielReservation
             protected set { _horairesTravail = value; }
         }
 
-        [XmlElement("Etat")]
-        public string monEtat
+        [XmlElement("EtatPersonnel")]
+        public EtatPersonnel monEtatPersonnel
         {
             get { return _etatPersonnel; }
             protected set { _etatPersonnel = value; }
@@ -98,7 +98,7 @@ namespace LogicielReservation
             monNbTotalSalarie = monNbTotalSalarie + 1;
             horaires = new DateTime[jours.Length];
             mesHorairesTravail = horaires;
-            monEtat = "disponible";
+            monEtatPersonnel = EtatPersonnel.disponible;
         }
 
         #endregion
@@ -131,11 +131,9 @@ namespace LogicielReservation
         #endregion
 
 
-        #endregion
-
         #region enumerations
 
-        //new public enum Etat { absent, disponible, occupe }
+        new public enum EtatPersonnel { absent, disponible, occupe }
         #endregion
     }
 }

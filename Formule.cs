@@ -68,6 +68,70 @@ namespace LogicielReservation
 
         #region methodes
 
+            public void afficherFormule()
+            {
+                Console.WriteLine("\nFormule {0} : \n", monNom);
+                foreach (Plat plat in mesPlats)
+                {
+                    Console.WriteLine("{0} : {1}. Temps de préparation : {2}, Temps de présence : {3}", plat.monTypePlat, plat.monNom, plat.monTempsPreparation, plat.monTempsPresence);
+                }
+            }
+
+        public void calculTempsPreparation()
+        {
+        }
+
+        public void calculTempsPresence()
+        {
+
+        }
+
+            /// <summary>
+            /// Cette fonction va permettre de 
+            /// </summary>
+            /// <param name=""></param> 
+            public Plat cherchePlat(string nomPlat)
+            {
+                Plat plat = null;
+                if (mesPlats.Exists(item => item.monNom == nomPlat))
+                {
+                    plat = mesPlats.Find(item => item.monNom == nomPlat);
+                }
+
+                return plat;
+            }
+
+            public void addPlat(Plat nomPlat)
+            {
+                Plat plat; 
+                plat = cherchePlat(nomPlat.monNom);
+                if (plat != null)
+                { Console.WriteLine("Ce plat existe déjà dans la formule"); }
+                else
+                {
+                    mesPlats.Add(nomPlat);
+                    Console.WriteLine("Le plat a été ajouté");
+                calculTempsPreparation();
+                    calculTempsPresence();
+                }   
+            }
+
+        public void deletePlat(Plat nomPlat)
+                        {
+                Plat plat; 
+                plat = cherchePlat(nomPlat.monNom);
+                if (plat == null)
+                { Console.WriteLine("Ce plat n'existe pas dans la formule"); }
+                else
+                {
+                    mesPlats.Remove(nomPlat);
+                    Console.WriteLine("Le plat a été supprimé");
+                calculTempsPreparation();
+                    calculTempsPresence();
+                }   
+            }
+
+
 
 
         #endregion
