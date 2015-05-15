@@ -12,38 +12,41 @@ namespace LogicielReservation
 
         #region variables
 
+        [XmlIgnore]
         private int _numSalarie;
+        [XmlIgnore]
         private static int _nbTotalSalarie;
+        [XmlIgnore]
         protected string _nom;
+        [XmlIgnore]
         protected string _prenom;
-        protected bool[] _joursTravail;
-        protected DateTime[] _horairesTravail;
-        protected EtatPersonnel _etatPersonnel;
+        [XmlIgnore]
+        protected string _etatPersonnel;
 
         #endregion
 
 
-        #region getters/setters
+        #region accesseurs
 
         [XmlElement("NbTotalSalarie")]
         public int monNbTotalSalarie
         {
             get { return _nbTotalSalarie; }
-            protected set { _nbTotalSalarie = value; }
+            set { _nbTotalSalarie = value; }
         }
 
         [XmlElement("NumSalarie")]
         public int monNumSalarie
         {
             get { return _numSalarie; }
-            protected set { _numSalarie = value; }
+            set { _numSalarie = value; }
         }
 
         [XmlElement("Prenom")]
         public string monPrenom
         {
             get { return _prenom; }
-            protected set { _prenom = value; }
+            set { _prenom = value; }
         }
 
 
@@ -51,30 +54,14 @@ namespace LogicielReservation
         public string monNom
         {
             get { return _nom; }
-            protected set { _nom = value; }
-        }
-
-        [XmlArray("JoursTravail")]
-        [XmlArrayItem("JourTravail")]
-        public bool[] mesJoursTravail
-        {
-            get { return _joursTravail; }
-            protected set { _joursTravail = value; }
-        }
-
-        [XmlArray("HorairesTravail")]
-        [XmlArrayItem("HoraireTravail")]
-        public DateTime[] mesHorairesTravail
-        {
-            get { return _horairesTravail; }
-            protected set { _horairesTravail = value; }
+            set { _nom = value; }
         }
 
         [XmlElement("EtatPersonnel")]
-        public EtatPersonnel monEtatPersonnel
+        public string monEtatPersonnel
         {
             get { return _etatPersonnel; }
-            protected set { _etatPersonnel = value; }
+            set { _etatPersonnel = value; }
         }
 
 
@@ -88,17 +75,14 @@ namespace LogicielReservation
         {
         }
 
-        public Personnel(string n, string p, bool[] jours, DateTime[] horaires)
+        public Personnel(string n, string p)
         {
-            jours = new bool[7];
-            mesJoursTravail = jours;
             monNom = n;
             monPrenom = p;
             monNumSalarie = monNbTotalSalarie;
             monNbTotalSalarie = monNbTotalSalarie + 1;
-            horaires = new DateTime[jours.Length];
-            mesHorairesTravail = horaires;
-            monEtatPersonnel = EtatPersonnel.disponible;
+            //monEtatPersonnel = EtatPersonnel.disponible;
+            monEtatPersonnel = "disponible";
         }
 
         #endregion
@@ -106,35 +90,23 @@ namespace LogicielReservation
 
         #region methodes
 
-        public void changerEtatPersonnel(EtatPersonnel nouvEtatPersonnel)
+        public override string ToString() {
+            string texte = "";
+            texte = "Le personnel "+monNom+" "+monPrenom+" est du type "+this.GetType()+". Son état : "+monEtatPersonnel+".";
+            return texte;
+        }
+
+
+        public void changerEtatPersonnel(string nouvEtatPersonnel)
         {
             monEtatPersonnel = nouvEtatPersonnel;
             Console.WriteLine("L'état de {0} {1} a été changé en {2}", monPrenom, monNom, nouvEtatPersonnel);
         }
 
-        public void changerJoursTravail(bool[] nouvJour)
-        {
-            if (nouvJour.Length == 7)
-            {
-                mesJoursTravail = nouvJour;
-            }
-            else
-            {
-                Console.WriteLine("Entrez un tableau de 7 booléens en entrée.");
-            }
-        }
 
-        public void changerHoraires(DateTime[] nouvHoraires)
-        {
-            mesHorairesTravail = nouvHoraires;
-        }
         #endregion
 
 
-        #region enumerations
-
-        new public enum EtatPersonnel { absent, disponible, occupe }
-        #endregion
     }
 }
 

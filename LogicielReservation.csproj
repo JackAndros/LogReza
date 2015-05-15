@@ -53,6 +53,8 @@
     <Compile Include="Restaurant.cs" />
     <Compile Include="Salle.cs" />
     <Compile Include="Table.cs" />
+    <Compile Include="TableCombinee.cs" />
+    <Compile Include="TableJumelable.cs" />
     <Compile Include="TableRectangle.cs" />
     <Compile Include="TableRonde.cs" />
   </ItemGroup>

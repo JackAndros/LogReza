@@ -12,15 +12,17 @@ namespace LogicielReservation
     {
         static void Main(string[] args) {
 
-            Salle t = new Salle("Grande Salle");
-            t.tousTypesTables();
-            t.ajouterTable();
+            #region test 
 
+
+            List<int> l = new List<int>();
+
+            l.Add(2);
+            l.Add(4);
+            Console.WriteLine(l[0]);
+            Console.WriteLine(l[1]);
+            Console.WriteLine(l.Count);
             Console.ReadKey();
-
-            #region test serialisation table
-
-            //Restaurant r = new Restaurant("test", "mdp");
 
             #endregion
 
@@ -119,8 +121,6 @@ namespace LogicielReservation
             bool quitte = false;
             bool choixOk = false;
             List<Restaurant> listRestaurants = new List<Restaurant>();
-            string nomRestaurant;
-            string pathRestaurant;
 
 
             //Gestion du menu
@@ -148,12 +148,14 @@ namespace LogicielReservation
                 switch (choix)
                 {
                     case 1:
-                        ChoixRestaurant(listDirectories); 
+                        ChoixRestaurant(listDirectories);
                         break;
                     case 2:
                         Restaurant r = CreerRestaurant();
-                        listRestaurants.Add(r); //Fonction à créer (avec création d'un dossier) qui permet ensuite d'accéder à "MenuRestaurant" avec pour entrée le restaurant créé
-                        listDirectories.Add(r.monNom);                        
+                        listRestaurants.Add(r); 
+                        listDirectories.Add(r.monNom);
+                        MenuRestaurant(r.monNom);
+                     
                         break;
                     case 0:
                         quitte = true;
@@ -269,25 +271,22 @@ namespace LogicielReservation
                 switch (choix)
                 {
                     case 1:
-                        restaurantChoisi.listerReservations();
+                        restaurantChoisi.gererReservations();
                         break;
                     case 2:
-                        restaurantChoisi.listerSalles();
+                        restaurantChoisi.gererSalles();
                         break;
                     case 3:
-                        restaurantChoisi.listerTables();
+                        restaurantChoisi.gererTables();
                         break;
                     case 4:
-                        restaurantChoisi.listerFormules();
+                        restaurantChoisi.gererFormules();
                         break;
                     case 5:
-                        restaurantChoisi.listerPlats();
+                        restaurantChoisi.gererPlats();
                         break;
                     case 6:
-                        restaurantChoisi.listerPersonnels();
-                        break;
-                    case 7:
-                        restaurantChoisi.listerParametres();
+                        restaurantChoisi.gererPersonnels();
                         break;
                     case 0:
                         quitte = true;
