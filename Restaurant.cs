@@ -128,7 +128,7 @@ namespace LogicielReservation
         #region methodes
 
         /// <summary>
-        /// Cette fonction va permettre de 
+        /// Cette fonction va permettre de
         /// </summary>
         /// <param name=""></param> 
         public override string ToString() {
