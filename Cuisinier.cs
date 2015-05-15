@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml;
+using System.Xml.Serialization;
 
 namespace LogicielReservation
 {
@@ -10,25 +11,9 @@ namespace LogicielReservation
     {
         #region variables
 
-        private double _rythmetravail;
-        private List<Type> _capacites;
-
-
         #endregion
 
-        #region getters/setters
-
-        public double monRythme
-        {
-            get { return _rythmetravail; }
-            protected set { _rythmetravail = value; }
-        }
-
-        public List<Type> mesCapacites
-        {
-            get { return _capacites; }
-            protected set { _capacites = value; }
-        }
+        #region accesseurs
 
         #endregion
 
@@ -38,11 +23,9 @@ namespace LogicielReservation
         {
         }
 
-        public Cuisinier(string n, string p, bool[] jours, DateTime[] horaires, double rythme, List<Type> capas)
-            : base(n, p, jours, horaires)
+        public Cuisinier(string n, string p)
+            : base(n, p)
         {
-            monRythme = rythme;
-            mesCapacites = capas;
         }
         #endregion
     }

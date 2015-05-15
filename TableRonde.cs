@@ -12,18 +12,19 @@ namespace LogicielReservation
     {
         #region variables
 
+        [XmlIgnore]
         private int _nbPlaces;
 
         #endregion
 
 
-        #region getters/setters
+        #region accesseurs
 
         [XmlElement("NbPlaces")]
         public int monNbPlaces
         {
             get { return _nbPlaces; }
-            protected set { _nbPlaces = value; }
+            set { _nbPlaces = value; }
         }
 
 
