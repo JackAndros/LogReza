@@ -68,26 +68,43 @@ namespace LogicielReservation
 
         #region methodes
 
-            public void afficherFormule()
+        /// <summary>
+        /// Cette méthode va permettre d'afficher le contenu de la formule.
+        /// </summary>
+            public override string ToString()
             {
-                Console.WriteLine("\nFormule {0} : \n", monNom);
+                string texte = "";
+                texte = texte + "\nFormule" + monNom + " : \n", monNom);
                 foreach (Plat plat in mesPlats)
                 {
-                    Console.WriteLine("{0} : {1}. Temps de préparation : {2}, Temps de présence : {3}", plat.monTypePlat, plat.monNom, plat.monTempsPreparation, plat.monTempsPresence);
+                    Console.WriteLine(plat.ToString());
                 }
+                return texte;
             }
 
+        /// <summary>
+        /// Calcule le temps de préparation de la formule.
+        /// </summary>
         public void calculTempsPreparation()
         {
+            DateTime tpsprepa = mesPlats[0].monTempsPreparation;
+            foreach (Plat plat in mesPlats)
+            { tpsprepa.Add(plat.monTempsPreparation.TimeOfDay); }
+            monTempsPreparation = tpsprepa;
         }
 
+        /// <summary>
+        /// Calcule le temps de présence dû à la formule.
+        /// </summary>
         public void calculTempsPresence()
         {
-
+            DateTime tpspres = mesPlats[0].monTempsPresence;
+            foreach (Plat plat in mesPlats)
+            { tpspres.Add(plat.monTempsPresence.TimeOfDay); }
+            monTempsPresence = tpspres;
         }
-
             /// <summary>
-            /// Cette fonction va permettre de 
+            /// Cette fonction va permettre de chercher un plat en particulier dans une formule.
             /// </summary>
             /// <param name=""></param> 
             public Plat cherchePlat(string nomPlat)
@@ -101,8 +118,13 @@ namespace LogicielReservation
                 return plat;
             }
 
+        /// <summary>
+        /// Ajoute un plat à la formule
+        /// </summary>
+        /// <param name="nomPlat">Le nom du plat à ajouter. On ne peut pas mettre deux fois le même plat dans une même formule.</param>
             public void addPlat(Plat nomPlat)
             {
+                Console.WriteLine("*** Ajout d'un plat à la formule ***");
                 Plat plat; 
                 plat = cherchePlat(nomPlat.monNom);
                 if (plat != null)
@@ -111,13 +133,18 @@ namespace LogicielReservation
                 {
                     mesPlats.Add(nomPlat);
                     Console.WriteLine("Le plat a été ajouté");
-                calculTempsPreparation();
-                    calculTempsPresence();
+                monTempsPreparation.Add(nomPlat.monTempsPreparation.TimeOfDay);
+                monTempsPresence.Add(nomPlat.monTempsPresence.TimeOfDay);
                 }   
             }
 
+        /// <summary>
+        /// Supprime un plat de la formule.
+        /// </summary>
+        /// <param name="nomPlat">Nom du plat à supprimer.</param>
         public void deletePlat(Plat nomPlat)
                         {
+                Console.WriteLine("*** Suppression d'un plat à la formule ***");
                 Plat plat; 
                 plat = cherchePlat(nomPlat.monNom);
                 if (plat == null)
@@ -126,8 +153,8 @@ namespace LogicielReservation
                 {
                     mesPlats.Remove(nomPlat);
                     Console.WriteLine("Le plat a été supprimé");
-                calculTempsPreparation();
-                    calculTempsPresence();
+                    monTempsPreparation.Add(-nomPlat.monTempsPreparation.TimeOfDay);
+                    monTempsPresence.Add(-nomPlat.monTempsPresence.TimeOfDay);
                 }   
             }
 
